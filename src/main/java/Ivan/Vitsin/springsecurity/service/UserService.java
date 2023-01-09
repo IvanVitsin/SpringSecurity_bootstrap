@@ -1,7 +1,8 @@
-package spring_boot_security.service;
+package Ivan.Vitsin.springsecurity.service;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
-import spring_boot_security.model.User;
+import Ivan.Vitsin.springsecurity.model.User;
+
 import java.util.List;
 
 public interface UserService extends UserDetailsService {

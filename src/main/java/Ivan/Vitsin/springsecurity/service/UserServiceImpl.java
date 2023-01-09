@@ -1,12 +1,13 @@
-package spring_boot_security.service;
+package Ivan.Vitsin.springsecurity.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import spring_boot_security.repositories.UserRepository;
-import spring_boot_security.model.User;
+import Ivan.Vitsin.springsecurity.model.User;
+import Ivan.Vitsin.springsecurity.repositories.UserRepository;
+
 import java.util.List;
 
 @Service

@@ -1,9 +1,9 @@
-package spring_boot_security.repositories;
+package Ivan.Vitsin.springsecurity.repositories;
 
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import spring_boot_security.model.User;
+import Ivan.Vitsin.springsecurity.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {

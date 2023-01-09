@@ -1,6 +1,7 @@
-package spring_boot_security.model;
+package Ivan.Vitsin.springsecurity.model;
 
 import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 
 @Entity

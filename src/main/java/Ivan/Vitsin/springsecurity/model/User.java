@@ -1,71 +1,64 @@
 package Ivan.Vitsin.springsecurity.model;
 
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
+@Data
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "name")
-    @NotEmpty(message = "Name cannot be empty")
-    @Size(min = 2, max = 20,message = "Введите имя от 2 до 20 символов")
-    private String name;
-    @Column(name = "last_name")
-    @NotEmpty(message = "LastName cannot be empty")
-    @Size(min = 2, max = 20,message = "Введите фамилию от 2 до 20 символов")
+
+    @Column(name = "first_name", nullable = false)
+    private String firstname;
+
+    @Column(name = "last_name", nullable = false)
     private String lastName;
-    @Column(name = "email")
-    @NotEmpty(message = "Поле не может быть пустым")
-    @Email(message = "Email should be valid")
-    private String email;
-    @Column(name = "age")
-    @Min(value = 0, message = "Извините, наша платформа для людей 16+")
+
+    @Column(name = "age", nullable = false)
     private int age;
-    @Column(name = "password")
-    @Size(min=2, message = "Пароль должен быть длиннее 5 символов")
+
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
+    @Column(name = "password", nullable = false)
     private String password;
+
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_roles",
+    @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    private Set<Role> roles = new LinkedHashSet<>(); // ....
 
-    public User() {
+
+    public List<String> getRolesName() {
+        return roles.stream().map(Role::getRoleName).collect(Collectors.toList());
     }
 
-    public User(String name, String lastName, String email, int age, String password) {
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-        this.age = age;
-        this.password = password;
-    }
 
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
-    public void setPassword(String password) {
-        this.password = passwordEncoder().encode(password);
-    }
+
+
+
+
+
+
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
+        return roles;
     }
 
     @Override
@@ -75,7 +68,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return email;
     }
 
     @Override
@@ -98,64 +91,5 @@ public class User implements UserDetails {
         return true;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", age=" + age +
-                ", password='" + password + '\'' +
-                ", roles=" + roles +
-                '}';
-    }
 }

@@ -5,13 +5,17 @@ import Ivan.Vitsin.springsecurity.model.User;
 
 import java.util.List;
 
-public interface UserService extends UserDetailsService {
+public interface UserService {
 
-    List<User> getAllUsers();
+
+    User findById(int id);
+
+    List<User> findAll();
+
     void saveUser(User user);
-    void deleteUserById(int id);
-    void updateUser(User user);
-    User getUserById(int id);
-    User getUserByName(String userName);
+
+    void deleteById(int id);
+
+    User findUserByEmail(String email);
 
 }

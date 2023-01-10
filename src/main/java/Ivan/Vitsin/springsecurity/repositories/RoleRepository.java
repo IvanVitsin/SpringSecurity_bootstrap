@@ -6,5 +6,5 @@ import Ivan.Vitsin.springsecurity.model.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Integer> {
-
+    Role findRoleByName(String roleName);
 }

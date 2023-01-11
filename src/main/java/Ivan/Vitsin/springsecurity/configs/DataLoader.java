@@ -37,7 +37,7 @@ public class DataLoader {
         }
 
         User admin = new User();
-        admin.setFirstname("admin");
+        admin.setFirstName("admin");
             admin.setLastName("admin");
         admin.setAge(30);
         admin.setEmail("admin@mail.ru");
@@ -48,7 +48,7 @@ public class DataLoader {
         }
 
         User user = new User();
-        user.setFirstname("user");
+        user.setFirstName("user");
         user.setLastName("user");
         user.setAge(30);
         user.setEmail("user@mail.ru");

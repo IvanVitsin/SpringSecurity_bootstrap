@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import Ivan.Vitsin.springsecurity.model.Role;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, Integer> {
+public interface RoleRepository extends JpaRepository<Role, Long> {
     Role findRoleByName(String roleName);
 }

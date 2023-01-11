@@ -17,10 +17,10 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "first_name", nullable = false)
-    private String firstname;
+    private String firstName;
 
     @Column(name = "last_name", nullable = false)
     private String lastName;
@@ -44,16 +44,6 @@ public class User implements UserDetails {
     public List<String> getRolesName() {
         return roles.stream().map(Role::getRoleName).collect(Collectors.toList());
     }
-
-
-
-
-
-
-
-
-
-
 
 
     @Override

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import Ivan.Vitsin.springsecurity.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u JOIN FETCH u.roles where u.email = :email ")
     User findUserByEmail (String email);
 }

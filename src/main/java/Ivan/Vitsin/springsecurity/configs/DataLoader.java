@@ -26,22 +26,22 @@ public class DataLoader {
 
         Role roleUser = new Role();
         roleUser.setName("ROLE_USER");
-        if (roleService.findRoleByName(roleUser.getRoleName()) == null) {
+        if (roleService.findRoleByName(roleUser.getName()) == null) {
             roleService.saveRole(roleUser);
         }
 
         Role roleAdmin = new Role();
         roleAdmin.setName("ROLE_ADMIN");
-        if (roleService.findRoleByName(roleAdmin.getRoleName()) == null) {
+        if (roleService.findRoleByName(roleAdmin.getName()) == null) {
             roleService.saveRole(roleAdmin);
         }
 
         User admin = new User();
         admin.setFirstName("admin");
             admin.setLastName("admin");
-        admin.setAge(30);
+        admin.setAge(18);
         admin.setEmail("admin@mail.ru");
-        admin.setPassword("123123");
+        admin.setPassword("admin");
         admin.setRoles(Set.of(roleAdmin, roleUser));
         if (userService.findUserByEmail(admin.getEmail()) == null) {
             userService.saveUser(admin);
@@ -50,7 +50,7 @@ public class DataLoader {
         User user = new User();
         user.setFirstName("user");
         user.setLastName("user");
-        user.setAge(30);
+        user.setAge(18);
         user.setEmail("user@mail.ru");
         user.setPassword("user");
         user.setRoles(Set.of(roleUser));
